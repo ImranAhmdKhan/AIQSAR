@@ -1493,6 +1493,53 @@ ui <- fluidPage(
 # --- 3. Define the Server Logic ---
 server <- function(input, output, session) {
   
+  # --- License Agreement Modal (shown on startup) ---
+  UPLOAD_DATE <- "2025-09-16"
+  
+  showModal(modalDialog(
+    title = tags$div(
+      style = "text-align: center;",
+      tags$h3(tags$b("AIQSAR — License Agreement"), style = "margin: 0;"),
+      tags$p(style = "color: #888; font-size: 0.9em; margin-top: 4px;",
+             paste("Date of Upload:", UPLOAD_DATE))
+    ),
+    tags$div(
+      style = "max-height: 400px; overflow-y: auto; padding: 10px;",
+      tags$h4("Open-Source License"),
+      tags$p(
+        "This application (AIQSAR) is released as open-source software and is made freely",
+        "available for research, education, and non-commercial use."
+      ),
+      tags$hr(),
+      tags$h5("Terms of Use"),
+      tags$ol(
+        tags$li(tags$b("Free Use:"), " You may use, copy, and modify this software for personal, academic, or non-commercial purposes free of charge."),
+        tags$li(tags$b("Attribution:"), " Any publication or presentation that makes use of this software must include an appropriate citation to the original authors."),
+        tags$li(tags$b("Redistribution:"), " Redistribution of the software or derivative works must retain this license notice and must not misrepresent the original software."),
+        tags$li(tags$b("No Warranty:"), " This software is provided \"as is\", without warranty of any kind, express or implied. The authors are not liable for any damages arising from its use."),
+        tags$li(tags$b("Commercial Use:"), " Any commercial use or commercialisation of this software requires prior written permission from the authors.")
+      ),
+      tags$hr(),
+      tags$p(
+        style = "font-style: italic; color: #555;",
+        "We invite interested parties to contribute to the improvisation towards AI-based QSAR.",
+        "For contributions or enquiries, please contact the repository maintainers."
+      ),
+      tags$p(style = "font-weight: bold; text-align: center;",
+             paste("© ImranAhmdKhan / AIQSAR —", format(as.Date(UPLOAD_DATE), "%B %d, %Y")))
+    ),
+    footer = tagList(
+      modalButton("Decline & Close"),
+      actionButton("accept_license", "Accept & Continue", class = "btn-primary")
+    ),
+    size = "m",
+    easyClose = FALSE
+  ))
+  
+  observeEvent(input$accept_license, {
+    removeModal()
+  })
+  
   # Check for catboost at startup
   catboost_available <- requireNamespace("catboost", quietly = TRUE)
   
