@@ -82,7 +82,7 @@ incorporating state-of-the-art machine learning algorithms.
 Figure 1 provides an overview of the `AIQSAR` graphical interface, illustrating
 the tab-based navigation that guides users through the full QSAR workflow.
 
-![Overview of the AIQSAR Shiny application interface showing the tab-based navigation panel (left) and the Full QSAR Pipeline results panel (right), including model comparison metrics and diagnostic plots.](screenshots/03_qsar_pipeline.png)
+![Figure 1: Overview of the AIQSAR Shiny application interface showing the tab-based navigation panel (left) and the Full QSAR Pipeline results panel (right), including model comparison metrics and diagnostic plots.](screenshots/03_qsar_pipeline.png)
 
 ## Data Input and Preprocessing
 
